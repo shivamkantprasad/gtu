@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gujarat Technological University Ahmedabad - Result Search</title>
+  <link fail.html>
+  <link href="https://fonts.googleapis.com/css?family=Arial:400,700" rel="stylesheet">
+  <style>
+    body {
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      color: #222;
+    }
+
+    .header {
+      text-align: center;
+      padding: 20px 0 10px;
+    }
+
+    .header img {
+      height: 80px;
+      vertical-align: middle;
+    }
+
+    .header-title {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 2em;
+      font-weight: 700;
+      vertical-align: middle;
+      color: #003399;
+      letter-spacing: .01em;
+    }
+
+    .sub-header {
+      text-align: right;
+      padding: 2px 30px 0 0;
+      font-size: 0.9em;
+      color: #444;
+    }
+
+    .container {
+      width: 700px;
+      margin: 25px auto 0;
+    }
+
+    .search-section {
+      display: flex;
+      gap: 2px;
+      background: #fff;
+      border: 2px solid #ec3535;
+      border-top: 4px solid #ec3535;
+      border-radius: 3px;
+      padding: 0;
+      justify-content: stretch;
+    }
+
+    .search-box,
+    .result-box {
+      flex: 1;
+      padding: 15px 16px 13px 16px;
+      min-width: 305px;
+      min-height: 180px;
+      position: relative;
+      background: #f8faff;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 6px;
+    }
+
+    .search-box {
+      border-right: 2px solid #ec3535;
+      border-radius: 4px 0 0 4px;
+      background: #fcfcfc;
+      min-width: 320px;
+    }
+
+    .search-label {
+      font-weight: bold;
+      font-size: 1.03em;
+      color: #0e388f;
+      display: block;
+      margin-bottom: 11px;
+    }
+
+    .search-field {
+      width: 100%;
+      font-size: 1em;
+      margin-bottom: 6px;
+      padding: 5px 6px;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      background: #fff;
+    }
+
+    .search-row {
+      margin-bottom: 6px;
+    }
+
+    select.search-field {
+      width: calc(100% - 2px);
+    }
+
+    .search-row label {
+      font-size: .98em;
+      color: #222;
+    }
+
+    .or {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      margin: 5px 0;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .password-row {
+      display: flex;
+      gap: 5px;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+
+    .code-input {
+      width: 45px;
+      font-size: 1.12em;
+      padding: 4px 6px;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      text-transform: lowercase;
+      background: #fff;
+      margin-left: 6px;
+    }
+
+    .captcha {
+      background: #f0f0f0;
+      color: #313131;
+      font-size: 1.28em;
+      padding: 2px 12px;
+      font-family: "consolas", monospace;
+      text-align: center;
+      border: 1px solid #888;
+      border-radius: 4px;
+      margin-left: 0;
+      width: 70px;
+      display: inline-block;
+    }
+
+    .search-btn {
+      margin-left: 10px;
+      padding: 7px 17px;
+      font-size: 1.08em;
+      border: none;
+      background: #38abfa;
+      color: #fff;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background .18s;
+    }
+
+    .search-btn:hover {
+      background: #1d85c8;
+    }
+
+    .result-box {
+      background: #f6f6fa;
+      min-height: 170px;
+      font-size: 1.06em;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .result-label {
+      color: #ce3636;
+      font-weight: bold;
+      font-size: 1.06em;
+      margin-bottom: 13px;
+    }
+
+    .result-row {
+      margin-bottom: 7px;
+      color: #222;
+    }
+
+    .result-label,
+    .result-row {
+      font-family: 'Arial', sans-serif;
+    }
+
+    .middle-hint {
+      text-align: center;
+      color: #999;
+      margin: 20px 0 0 0;
+      font-size: 1.05em;
+    }
+
+    .disclaimer {
+      color: #c62c2c;
+      font-size: .9em;
+      background: #f9f6f6;
+      padding: 6px 5px;
+      margin-top: 20px;
+      text-align: center;
+      border-top: 1px solid #d8d8d8;
+      border-bottom: 1px solid #d8d8d8;
+      letter-spacing: 0px;
+    }
+
+    .quries {
+      color: #666;
+      font-size: .9em;
+      background: #f3f3f8;
+      padding: 6px 5px;
+      border-bottom: 1px solid #d8d8d8;
+      text-align: center;
+    }
+
+    .social-links {
+      font-size: .93em;
+      color: #155397;
+      text-align: center;
+      margin: 4px 0 0 0;
+      letter-spacing: .1px;
+    }
+
+    .social-links a {
+      color: #155397;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
+    @media (max-width: 770px) {
+      .container {
+        width: 98vw;
+        min-width: 310px;
+        box-sizing: border-box;
+      }
+
+      .search-section {
+        flex-direction: column;
+      }
+
+      .result-box,
+      .search-box {
+        min-width: unset;
+        border-radius: 0 0 6px 6px;
+      }
+    }
+  </style>
+  <script>
+    // Generate simple CAPTCHA
+    function generateCaptcha() {
+      const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+      let code = "";
+      for (let i = 0; i < 4; i++)
+        code += chars[Math.floor(Math.random() * chars.length)];
+      document.getElementById('captcha-value').textContent = code;
+    }
+    function verifyAndShowResult() {
+      var captchaInput = document.getElementById('captcha').value.trim().toLowerCase();
+      var captchaValue = document.getElementById('captcha-value').textContent.toLowerCase();
+      var resultBox = document.getElementById('search-result');
+      var enroll = document.getElementById('enrollNo').value.trim();
+      var seat = document.getElementById('seatNo').value.trim();
+      var password = document.getElementById('password').value;
+      if (!enroll && !seat) {
+        alert("Please enter either Enroll No. or Exam Seat No.");
+        return false;
+      }
+      if (password == "") {
+        alert("Please enter Student Portal Password.");
+        return false;
+      }
+      if (captchaInput !== captchaValue) {
+        alert("Invalid code entered.");
+        generateCaptcha();
+        return false;
+      }
+      // DEMO: Set dummy result (No real backend)
+      resultBox.innerHTML = `
+      <div class="result-row"><span style="color:#111">Name</span>: ------------ </div>
+      <div class="result-row"><span style="color:#111">Enrollment No.</span>: ------------ </div>
+      <div class="result-row"><span style="color:#111">Exam Seat No.</span>: ------------ </div>
+      <div class="result-row"><span style="color:#111">Declared On</span>: ------------ </div>
+      <div class="result-row"><span style="color:#111">Exam</span>: ------------ </div>
+      <div class="result-row"><span style="color:#111">Branch</span>: ------------ </div>`;
+      return false;
+    }
+    window.onload = function () {
+      generateCaptcha();
+    }
+    function refreshCaptcha() {
+      generateCaptcha();
+      document.getElementById('captcha').value = "";
+    }
+  </script>
+</head>
+
+<body>
+  <div class="header">
+    <img
+      src="https://th.bing.com/th/id/R.f5eab2881a93fe97ac3c82c0ef0f07d3?rik=LS%2fCVvJmRcM48w&riu=http%3a%2f%2fwww.gtu.ac.in%2fImages%2fLogo_trans2.gif&ehk=F4yYlJC9mrC8wz0ANbjZcTTnsocAobnrPION7%2b0yeMc%3d&risl=&pid=ImgRaw&r=0"
+      alt="GTU Logo">
+    <span class="header-title">Gujarat Technological University Ahmedabad</span>
+  </div>
+  <div class="sub-header">
+    <span style="font-size:0.93em;"><a style="color:#998" href="#">Archive</a> | <b>Current [Summer 2025]</b></span>
+  </div>
+
+  <div class="container">
+
+    <div class="search-section">
+      <!-- SEARCH BOX -->
+      <div class="search-box">
+        <div class="search-label">&nbsp;SEARCH :</div>
+        <form action="#" method="get" onsubmit="return verifyAndShowResult();">
+          <div class="search-row">
+            <label>Session</label>
+            <select class="search-field" style="margin:-2px 0 1px 5px;width: 55%;" disabled>
+              <option selected>Summer 2025</option>
+            </select>
+          </div>
+          <div class="search-row">
+            <label>Exam</label>
+            <select class="search-field" style="margin:-2px 0 1px 34px; width: 81%;" disabled>
+              <option selected>...BE SEM 1 - REGULAR (MAY 2025)</option>
+            </select>
+          </div>
+          <div class="search-row" style="margin-bottom:2px;">
+            <label>Enrol No.</label>
+            <input id="enrollNo" class="search-field" style="display:inline;width:66%;" maxlength="12" type="text"
+              placeholder="">
+            <span style="margin-left:5px; color:#0e388f;font-weight:bold;">OR</span>
+            <label style="margin:0 0 0 3px;">Seat No.</label>
+            <input id="seatNo" class="search-field" style="display:inline;width:35%;" maxlength="12" type="text"
+              placeholder="(e.g. _123456)">
+          </div>
+          <div class="search-row password-row">
+            <input id="password" class="search-field" style="width:60%;" type="password"
+              placeholder="Student Portal Password">
+            <label style="margin-left:3px;">Code :</label>
+            <span class="captcha" id="captcha-value" style="user-select:none;">d77f</span>
+            <input id="captcha" class="code-input" maxlength="4" autocomplete="off">
+            <button type="button" title="Refresh code" onclick="refreshCaptcha()"
+              style="background:transparent; cursor:pointer; border:none; font-size:1em; margin-left:2px; padding:0;">&#8635;</button>
+          </div>
+
+          <button onclick="window.location.href='fail.html';">Search</button>
+
+
+
+        </form>
+      </div>
+      <!-- RESULT BOX -->
+      <div class="result-box">
+        <div class="result-label">SEARCH RESULT.:</div>
+        <div id="search-result">
+          <div class="result-row"><span style="color:#111">Name</span>: ------------ </div>
+          <div class="result-row"><span style="color:#111">Enrollment No.</span>: ------------ </div>
+          <div class="result-row"><span style="color:#111">Exam Seat No.</span>: ------------ </div>
+          <div class="result-row"><span style="color:#111">Declared On</span>: ------------ </div>
+          <div class="result-row"><span style="color:#111">Exam</span>: ------------ </div>
+          <div class="result-row"><span style="color:#111">Branch</span>: ------------ </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="middle-hint">
+      Enter search criteria and hit ?Search? button.
+    </div>
+    <div class="disclaimer">
+      This is a Computer generated provisional result, please consider the Hard-copy Gradesheet as final result.
+    </div>
+    <div class="quries">
+      Result queries will be entertained till 15-days from the Result declaration date. No result queries will be
+      entertained afterword.
+    </div>
+    <div class="social-links">
+      GTU's Official Instagram Page: <a href="https://www.instagram.com/gtu.media7?semantag"
+        target="_blank">https://www.instagram.com/gtu.media7?semantag</a><br>
+      GTU's Official YouTube Channel: <a href="https://www.youtube.com/c/GujaratTechnologicalUniversity"
+        target="_blank">
+        https://www.youtube.com/c/GujaratTechnologicalUniversity</a>
+    </div>
+  </div>
+</body>
+
+</html>
